@@ -31,7 +31,7 @@ class WebhookController extends Controller
             
 
             // Pass the data to the processOrder method of OrderService
-            dd($this->orderService->processOrder($data));
+            $this->orderService->processOrder($data);
 
             // Return a success response
             return response()->json(['message' => 'Webhook processed successfully'], 200);
