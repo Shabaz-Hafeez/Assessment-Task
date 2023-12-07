@@ -35,7 +35,7 @@ class AffiliateService
             'name' => $name,
             'commission_rate' => $commissionRate,
         ]);
-        dd($affiliate);
+        // dd($affiliate);
         // Associate the affiliate with the merchant
         $merchant->affiliates()->save($affiliate);
 
@@ -49,10 +49,10 @@ class AffiliateService
 
     public function findOrCreateAffiliateByEmail(string $email): Affiliate
     {
-        dd('hiii');
+        // dd('hiii');
         // Attempt to find the affiliate by email
         $affiliate = Affiliate::where('email', $email)->first();
-        dd($affiliate);
+        // dd($affiliate);
 
         // If the affiliate does not exist, create a new one
         if (!$affiliate) {
