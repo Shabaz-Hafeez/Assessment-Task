@@ -27,6 +27,45 @@ class AffiliateService
      */
     public function register(Merchant $merchant, string $email, string $name, float $commissionRate): Affiliate
     {
-        // TODO: Complete this method
+        // Validate or sanitize input if needed
+
+        // Create a new affiliate instance
+        $affiliate = new Affiliate([
+            'email' => $email,
+            'name' => $name,
+            'commission_rate' => $commissionRate,
+        ]);
+        dd($affiliate);
+        // Associate the affiliate with the merchant
+        $merchant->affiliates()->save($affiliate);
+
+        // Optionally, interact with the ApiService
+        // $this->apiService->createAffiliateOnRemote($affiliate);
+
+        // You might want to perform additional actions, logging, etc.
+
+        return $affiliate;
     }
+
+    public function findOrCreateAffiliateByEmail(string $email): Affiliate
+    {
+        dd('hiii');
+        // Attempt to find the affiliate by email
+        $affiliate = Affiliate::where('email', $email)->first();
+        dd($affiliate);
+
+        // If the affiliate does not exist, create a new one
+        if (!$affiliate) {
+            $affiliate = Affiliate::create([
+                'email' => $email,
+                // You can set other attributes as needed
+            ]);
+
+            // Additional logic for new affiliate creation, if any
+        }
+
+        return $affiliate;
+    }
+
+
 }

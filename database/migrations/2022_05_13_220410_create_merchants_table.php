@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->default(1);
             $table->string('domain')->unique();
             $table->string('display_name');
             $table->boolean('turn_customers_into_affiliates')->default(true);
